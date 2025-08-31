@@ -1,0 +1,9 @@
+title: HD2MM
+email: FloCo12@gmx.net
+github_username: teutinsa
+
+highlighter: rouge
+
+theme: minima
+plugins:
+  - jekyll-feed

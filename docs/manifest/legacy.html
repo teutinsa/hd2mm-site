@@ -1,0 +1,80 @@
+---
+layout: default
+title: Legacy Manifest
+---
+<p>
+	Ah, the legacy manifest... The first of many, unbeknown to me.
+	<br>
+	So, as I said in the <a href="/docs/manifest.html">introduction</a>, the legacy manifest was the first idea I had to solve mods getting more complex.
+	Like any first idea it has a lot of flaws that I didn't see at the time, but it worked for the time being.
+	<br>
+	All this manifest does is grant the creator the ability to give their mod a user-friendly name, description, and icon.
+	Alongside optionally specifying some basic variations of their mod.
+</p>
+
+<h3>Properties</h3>
+<ul>
+	<li>
+		<code>Guid</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>
+				A unique identifier in form of a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.guid">GUID</a>.
+				This value should be the same across mod versions.
+				It's used by the manager to tell the mod apart from others.
+				You can think of this value as the mods social media handle.
+			</li>
+		</ul>
+	</li>
+	<li>
+		<code>Name</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>The user-friendly name of the mod.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Description</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>The user-friendly description of the mod.</li>
+		</ul>
+	</li>
+	<li>
+		<code>IconPath</code>
+		<ul>
+			<li>optional</li>
+			<li><code>string</code> | <code>null</code></li>
+			<li>The path to the mods icon, relative to the mods root.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Options</code>
+		<ul>
+			<li>optional</li>
+			<li><code>array</code> | <code>null</code></li>
+			<li>
+				An array of <code>string</code> paths as options of the mod.
+				Each item is both a root relative path and a name of the option.
+				If <code>null</code> or not defined the root will be used to source the patch files.
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>Example</h3>
+{% highlight json linenos %}
+{
+	"Guid": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+	"Name": "Mod Name",
+	"Description": "Lorem ipsum",
+	"IconPath": "icon.png",
+	"Options": [
+		"Option 1",
+		"Option 2"
+	]
+}
+{% endhighlight %}

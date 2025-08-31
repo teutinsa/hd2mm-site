@@ -1,0 +1,86 @@
+---
+layout: default
+title: Manifest Introduction
+---
+<p class="text-center fs-5">
+	So you are making a mod and or want to know about manifests? You've come to the right place! Let's get started.
+</p>
+
+<h3>What is a manifest?</h3>
+<p>
+	So what is a manifest and why do you need it?
+	<br>
+	In short a manifest is a simple text file with a specific <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> format telling the manager everything it needs to know about your mod.
+	<br>
+	Things like the name, a description, icon, and its options for example.
+</p>
+
+<h3>Why do I need a manifest?</h3>
+<p>
+	A bit of history.
+	<br>
+	In the beginning most mods were only ever 3 files:
+	<code>9ba626afa44a3aa3.patch_0</code>,
+	<code>9ba626afa44a3aa3.patch_0.gpu_resources</code>, and
+	<code>9ba626afa44a3aa3.patch_0.stream</code>.
+	<br>
+	Something similar should be familiar to you if you've ever manually modded the game.
+	<br>
+	Eventually the modding community got bigger and more ambitious and with that ambition the mods grew as well.
+	Suddenly you had more content and options in the same archive file (ZIP, RAR, ect.) and the manager in its infidelity could not cope with that.
+	Back then your only option was to un-zip a mod with options you've downloaded and re-zip the options you would want to use so you could import them into the manager.
+</p>
+<p>
+	That obviously would get cumbersome as mods grew in complexity.
+	<br>
+	When I realized that on top of how many people were already using my manager, I wanted to come up with a solution.
+	And that solution eventually came in form of the manifests.
+</p>
+
+<h3>How to read the manifest specifications</h3>
+Now that we're all caught up, here's how to read the following documents describing the so-called schema of the manifests.
+This is about to get a bit technical so brace yourself.
+<br>
+You will come across notations like this:
+<br>
+<div class="border d-inline-block p-1">
+	<ul>
+		<li>
+			Property Name
+			<ol>
+				<li><code>required</code> or <code>optional</code></li>
+				<li>allowed types</li>
+				<li>description</li>
+			</ol>
+		</li>
+	</ul>
+</div>
+<br>
+This describes a JSON property in detail.
+<ol>
+	<li>If this property has to be defined or if you can leave it out if you don't need it.</li>
+	<li>
+		What types the property accepts as its values. These will be seperated by pipes (<code>|</code>) can be any of the following:
+		<ul>
+			<li><code>string</code>: A pice of text in double (<code>"</code>) quotes.</li>
+			<li><code>number</code>: A number that can be both an integer or a floating point. (description will say which one)</li>
+			<li><code>object</code>: A JSON object essentially a collection of properties seperated by commas denote by curly braces. (description will point to another spec expanding on the layout)</li>
+			<li><code>array</code>: A JSON array is a comma seperated list of any values (different types allowed in the same array) denoted by square brackets. (description will explain what types are allowed)</li>
+			<li><code>null</code>: Null is a keyword literally meaning nothing so setting a property to <code>null</code> will explicitly give it no value.</li>
+		</ul>
+	</li>
+	<li>An additional description with more details.</li>
+</ol>
+<p>
+	I Hope that made sense.
+	I tried to make this as easy to understand as possible so that even people with little technical knowledge would understand it.
+	<br>
+	Now that you know what to expect and how to read it I'll leave you with the links to the different manifest versions.
+</p>
+
+<h3>Manifests</h3>
+<ul>
+	<li><a href="/docs/manifest/legacy.html">Legacy</a></li>
+	<li><a href="/docs/manifest/v1.html">V1</a></li>
+	<li><a href="/docs/manifest/v2_draft.html">V2 (draft)</a></li>
+</ul>

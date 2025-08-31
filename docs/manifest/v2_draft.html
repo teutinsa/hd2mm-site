@@ -1,0 +1,298 @@
+---
+layout: default
+title: V2 Manifest (Draft)
+---
+{% include draft.html %}
+<p>
+    The future is scary or something like that.
+	<br>
+	This is a draft made by me (<a href="https://discordapp.com/users/581141865626337306">teutinsa / Albert Wesker</a>) and <a href="https://discordapp.com/users/201055147722407937">Crystal2K</a>, developer of Arsenal, with the goal to creat a manifest that meets both our requirements.
+	<br>
+	The core motivation for this draft is to create a single manifest. Crystal and I both want to avoid having multiple manifests for different mod managers.
+</p>
+
+<h3>Properties</h3>
+<ul>
+	<li>
+		<code>Version</code>
+		<ul>
+			<li>required</li>
+			<li><code>number</code></li>
+			<li>
+				Version specifier of the manifest (<b>NOT THE MOD</b>). Should always be <code>2</code> when targeting V2.
+				This property is required to tell manifests apart.
+			</li>
+		</ul>
+	</li>
+	<li>
+		<code>Guid</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>
+				A unique identifier in form of a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.guid">GUID</a>.
+				This value should be the same across mod versions.
+				It's used by the manager to tell the mod apart from others.
+				You can think of this value as the mods social media handle.
+			</li>
+		</ul>
+	</li>
+	<li>
+		<code>Name</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>The user-friendly name of the mod.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Description</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>The user-friendly description of the mod.</li>
+		</ul>
+	</li>
+	<li>
+		<code>IconPath</code>
+		<ul>
+			<li>optional</li>
+			<li><code>string</code> | <code>null</code></li>
+			<li>The path to the mods icon, relative to the mods root.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Options</code>
+		<ul>
+			<li>optional</li>
+			<li><code>array</code> | <code>null</code></li>
+			<li>
+				An array of <a href="#option">Option</a> objects.
+				If <code>null</code> or not defined the root will be used to source the patch files.
+			</li>
+		</ul>
+	</li>
+	<li>
+		<code>Categories</code>
+		<ul>
+			<li>optional</li>
+			<li><code>array</code> | <code>null</code></li>
+			<li>An array of <a href="#category">Category</a> objects.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Tags</code>
+		<ul>
+			<li>optional</li>
+			<li><code>array</code> | <code>null</code></li>
+			<li>An array of <code>strings</code> to be used as tags.</li>
+		</ul>
+	</li>
+	<li>
+		<code>NexusData</code>
+		<ul>
+			<li>optional</li>
+			<li><code>object</code> | <code>null</code></li>
+			<li>Optional <a href="#nexus-data">Nexus Data</a> object.</li>
+		</ul>
+	</li>
+</ul>
+
+<h3 id="option">Option</h3>
+<ul>
+	<li>
+		<code>Guid</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>A unique identifier in form of a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.guid">GUID</a> for the option.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Name</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>The user-friendly name of the option.</li>
+		</ul>
+	</li>
+	<li>
+		<code>CategoryRef</code>
+		<ul>
+			<li>optional</li>
+			<li><code>string</code> | <code>null</code></li>
+			<li>A unique identifier in form of a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.guid">GUID</a> referencing a declared category.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Description</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>The user-friendly description of the option.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Include</code>
+		<ul>
+			<li>optional</li>
+			<li><code>array</code> | <code>null</code></li>
+			<li>
+				Additional root relative include paths for the option.
+				<b>Must be st if <code>SubOptions</code> is <code>null</code> or undefined!</b>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<code>Image</code>
+		<ul>
+			<li>optional</li>
+			<li><code>string</code> | <code>null</code></li>
+			<li>The root relative path to an icon for the option.</li>
+		</ul>
+	</li>
+	<li>
+		<code>SubOptions</code>
+		<ul>
+			<li>optional</li>
+			<li><code>array</code> | <code>null</code></li>
+			<li>
+				Optional <a href="#sub-option">Sub-Option</a>s for the current option.
+				<b>Must be set if <code>Include</code> is <code>null</code> or undefined!</b>
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<h3 id="sub-option">Sub-Option</h3>
+<ul>
+	<li>
+		<code>Guid</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>A unique identifier in form of a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.guid">GUID</a> for the sub-option.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Name</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>The user-friendly name of the sub-option.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Description</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>The user-friendly description of the sub-option.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Include</code>
+		<ul>
+			<li>optional</li>
+			<li><code>array</code> | <code>null</code></li>
+			<li>Additional root relative include paths for the option.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Image</code>
+		<ul>
+			<li>optional</li>
+			<li><code>string</code> | <code>null</code></li>
+			<li>The root relative path to an icon for the option.</li>
+		</ul>
+	</li>
+</ul>
+
+<h3 id="nexus-data">Nexus Data</h3>
+<ul>
+	<li>
+		<code>ModId</code>
+		<ul>
+			<li>required</li>
+			<li><code>number</code></li>
+			<li>The ID assigned to the mod by <a href="https://nexusmods.com/">Nexus Mods</a></li>
+		</ul>
+	</li>
+</ul>
+
+<h3 id="category">Category</h3>
+<ul>
+	<li>
+		<code>Guid</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>A unique identifier in form of a <a href="https://learn.microsoft.com/en-us/dotnet/api/system.guid">GUID</a> for the category.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Name</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>The user-friendly name of the category.</li>
+		</ul>
+	</li>
+	<li>
+		<code>Description</code>
+		<ul>
+			<li>required</li>
+			<li><code>string</code></li>
+			<li>The user-friendly description of the category.</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>Example</h3>
+{% highlight json linenos %}
+{
+	"Version": 2,
+	"Guid": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+	"Name": "Mod Name",
+	"Description": "",
+	"IconPath": "icon.png",
+	"Options": [
+		{
+			"Guid": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+			"Name": "Option Name",
+			"CategoryRef": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+			"Description": "",
+			"Include": [
+				"Base"
+			],
+			"Image": "img.png",
+			"SubOptions": [
+				{
+					"Guid": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+					"Name": "Sub Option Name",
+					"Description": "",
+					"Include": [
+						"Addition"
+					],
+					"Image": "img.png"
+				}
+			]
+		}
+	],
+	"Categories": [
+		{
+			"Guid": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+			"Name": "Category Name",
+			"Description": ""
+		}
+	],
+	"Tags": [
+		"weapons",
+		"armor",
+		"ect"
+	],
+	"NexusData": {
+		"ModId": 109
+	}
+}
+{% endhighlight %}
