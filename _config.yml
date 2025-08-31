@@ -1,8 +1,8 @@
 title: HD2MM
 email: FloCo12@gmx.net
 github_username: teutinsa
-url: "http://127.0.0.1:4000"
-baseurl: ""
+url: "https://teutinsa.github.io"
+baseurl: "/hd2mm-site"
 
 highlighter: rouge
 
