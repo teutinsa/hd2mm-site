@@ -6,6 +6,9 @@ baseurl: "/hd2mm-site"
 
 highlighter: rouge
 
-theme: minima
+collections_dir: collections
+collections:
+  - faq
+
 plugins:
   - jekyll-feed
