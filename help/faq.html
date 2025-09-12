@@ -13,6 +13,7 @@ title: FAQ
 			<div id="collapse_{{ post.name }}" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
 				<div class="accordion-body">
 					{{ post.content | markdownify }}
+					<a class="d-block w-100 text-end" href="{{ post.url | relative_url }}">Permanent Link</a>
 				</div>
 			</div>
 		</div>

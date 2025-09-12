@@ -1,4 +1,4 @@
-const copy_buttons = document.querySelectorAll('button');
+const copy_buttons = document.getElementsByTagName('button')
 
 copy_buttons.forEach(button => {
     const attrib = button.getAttribute('data-copy-source');

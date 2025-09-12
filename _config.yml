@@ -8,7 +8,18 @@ highlighter: rouge
 
 collections_dir: collections
 collections:
-  - faq
+  faq:
+    order:
+      - not_starting.md
+    output: true
+    permalink: /help/:collection/:name:output_ext
+
+defaults:
+  - scope:
+      path: ""
+      type: faq
+    values:
+      layout: faq
 
 plugins:
   - jekyll-feed
